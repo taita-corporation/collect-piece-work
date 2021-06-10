@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Layout } from "../components/layout"
-import { heading, paragraph, container } from "./404.module.css"
+import * as React from 'react';
+import Layout from '../components/layout';
+import { heading, paragraph, container } from './404.module.css';
 
 export default function NotFoundPage() {
   return (
@@ -12,5 +12,5 @@ export default function NotFoundPage() {
         </p>
       </div>
     </Layout>
-  )
+  );
 }

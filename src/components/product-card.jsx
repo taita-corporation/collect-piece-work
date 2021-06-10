@@ -1,8 +1,8 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import { getShopifyImage } from "gatsby-source-shopify"
-import { formatPrice } from "../utils/format-price"
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { getShopifyImage } from 'gatsby-source-shopify';
+import { formatPrice } from '../utils/format-price';
 import {
   productCardStyle,
   productHeadingStyle,
@@ -10,7 +10,7 @@ import {
   productDetailsStyle,
   productVendorStyle,
   productPrice,
-} from "./product-card.module.css"
+} from './product-card.module.css';
 
 export function ProductCard({ product, eager }) {
   const {
@@ -20,25 +20,25 @@ export function ProductCard({ product, eager }) {
     images: [firstImage],
     vendor,
     storefrontImages,
-  } = product
+  } = product;
 
   const price = formatPrice(
     priceRangeV2.minVariantPrice.currencyCode,
-    priceRangeV2.minVariantPrice.amount
-  )
+    priceRangeV2.minVariantPrice.amount,
+  );
 
-  let storefrontImageData = {}
+  let storefrontImageData = {};
   if (storefrontImages) {
-    const storefrontImage = storefrontImages.edges[0].node
+    const storefrontImage = storefrontImages.edges[0].node;
     try {
       storefrontImageData = getShopifyImage({
         image: storefrontImage,
-        layout: "fixed",
+        layout: 'fixed',
         width: 200,
         height: 200,
-      })
+      });
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
@@ -52,7 +52,7 @@ export function ProductCard({ product, eager }) {
         <GatsbyImage
           alt={firstImage?.altText ?? title}
           image={firstImage?.gatsbyImageData ?? storefrontImageData}
-          loading={eager ? "eager" : "lazy"}
+          loading={eager ? 'eager' : 'lazy'}
         />
       </div>
       <div className={productDetailsStyle}>
@@ -63,7 +63,7 @@ export function ProductCard({ product, eager }) {
         <div className={productPrice}>{price}</div>
       </div>
     </Link>
-  )
+  );
 }
 
 export const query = graphql`
@@ -86,4 +86,4 @@ export const query = graphql`
     }
     vendor
   }
-`
+`;
