@@ -34,7 +34,7 @@ export default function CartPage() {
       <div className={wrap}>
         {emptyCart ? (
           <div className={emptyStateContainer}>
-            <h1 className={emptyStateHeading}>Your cart is empty</h1>
+            <h1 className={emptyStateHeading}>バッグは空です</h1>
             <p>
               Looks like you haven’t found anything yet. We understand that
               sometimes it’s hard to chose — maybe this helps:
@@ -110,6 +110,7 @@ export default function CartPage() {
               onClick={handleCheckout}
               disabled={loading}
               className={checkoutButton}
+              type="submit"
             >
               Checkout
             </button>

@@ -1,14 +1,14 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { Layout } from "../../../components/layout"
-import isEqual from "lodash.isequal"
-import { GatsbyImage, getSrc } from "gatsby-plugin-image"
-import { StoreContext } from "../../../context/store-context"
-import { AddToCart } from "../../../components/add-to-cart"
-import { NumericInput } from "../../../components/numeric-input"
-import { formatPrice } from "../../../utils/format-price"
-import { Seo } from "../../../components/seo"
-import { CgChevronRight as ChevronIcon } from "react-icons/cg"
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import isEqual from 'lodash.isequal';
+import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
+import { CgChevronRight as ChevronIcon } from 'react-icons/cg';
+import Layout from '../../../components/layout';
+import { StoreContext } from '../../../context/store-context';
+import AddToCart from '../../../components/add-to-cart';
+import { NumericInput } from '../../../components/numeric-input';
+import { formatPrice } from '../../../utils/format-price';
+import Seo from '../../../components/seo';
 import {
   productBox,
   container,
@@ -27,7 +27,7 @@ import {
   addToCartStyle,
   metaSection,
   productDescription,
-} from "./product-page.module.css"
+} from './product-page.module.css';
 
 export default function Product({ data: { product, suggestions } }) {
   const {
@@ -39,68 +39,64 @@ export default function Product({ data: { product, suggestions } }) {
     description,
     images,
     images: [firstImage],
-  } = product
-  const { client } = React.useContext(StoreContext)
+  } = product;
+  const { client } = React.useContext(StoreContext);
 
-  const [variant, setVariant] = React.useState({ ...initialVariant })
-  const [quantity, setQuantity] = React.useState(1)
+  const [variant, setVariant] = React.useState({ ...initialVariant });
+  const [quantity, setQuantity] = React.useState(1);
 
-  const productVariant =
-    client.product.helpers.variantForOptions(product, variant) || variant
+  const productVariant = client.product.helpers.variantForOptions(product, variant) || variant;
 
   const [available, setAvailable] = React.useState(
-    productVariant.availableForSale
-  )
+    productVariant.availableForSale,
+  );
 
   const checkAvailablity = React.useCallback(
     (productId) => {
       client.product.fetch(productId).then((fetchedProduct) => {
-        const result =
-          fetchedProduct?.variants.filter(
-            (variant) => variant.id === productVariant.storefrontId
-          ) ?? []
+        const result = fetchedProduct?.variants.filter(
+          (variant) => variant.id === productVariant.storefrontId,
+        ) ?? [];
 
         if (result.length > 0) {
-          setAvailable(result[0].available)
+          setAvailable(result[0].available);
         }
-      })
+      });
     },
-    [productVariant.storefrontId, client.product]
-  )
+    [productVariant.storefrontId, client.product],
+  );
 
   const handleOptionChange = (index, event) => {
-    const value = event.target.value
+    const { value } = event.target;
 
-    if (value === "") {
-      return
+    if (value === '') {
+      return;
     }
 
-    const currentOptions = [...variant.selectedOptions]
+    const currentOptions = [...variant.selectedOptions];
 
     currentOptions[index] = {
       ...currentOptions[index],
       value,
-    }
+    };
 
-    const selectedVariant = variants.find((variant) => {
-      return isEqual(currentOptions, variant.selectedOptions)
-    })
+    const selectedVariant = variants.find((variant) => isEqual(currentOptions, variant.selectedOptions));
 
-    setVariant({ ...selectedVariant })
-  }
+    setVariant({ ...selectedVariant });
+  };
 
   React.useEffect(() => {
-    checkAvailablity(product.storefrontId)
-  }, [productVariant.storefrontId, checkAvailablity, product.storefrontId])
+    checkAvailablity(product.storefrontId);
+  }, [productVariant.storefrontId, checkAvailablity, product.storefrontId]);
 
   const price = formatPrice(
     priceRangeV2.minVariantPrice.currencyCode,
-    variant.price
-  )
+    variant.price,
+  );
 
-  const hasVariants = variants.length > 1
-  const hasImages = images.length > 0
-  const hasMultipleImages = true || images.length > 1
+  const hasVariants = variants.length > 1;
+  const hasImages = images.length > 0;
+  const hasMultipleImages = true || images.length > 1;
 
   return (
     <Layout>
@@ -128,7 +124,7 @@ export default function Product({ data: { product, suggestions } }) {
                     >
                       <GatsbyImage
                         objectFit="contain"
-                        loading={index === 0 ? "eager" : "lazy"}
+                        loading={index === 0 ? 'eager' : 'lazy'}
                         alt={
                           image.altText
                             ? image.altText
@@ -142,7 +138,10 @@ export default function Product({ data: { product, suggestions } }) {
               </div>
               {hasMultipleImages && (
                 <div className={scrollForMore} id="instructions">
-                  <span aria-hidden="true">←</span> scroll for more{" "}
+                  <span aria-hidden="true">←</span>
+                  {' '}
+                  scroll for more
+                  {' '}
                   <span aria-hidden="true">→</span>
                 </div>
               )}
@@ -162,8 +161,8 @@ export default function Product({ data: { product, suggestions } }) {
               <span>{price}</span>
             </h2>
             <fieldset className={optionsWrapper}>
-              {hasVariants &&
-                options.map(({ id, name, values }, index) => (
+              {hasVariants
+                && options.map(({ id, name, values }, index) => (
                   <div className={selectVariant} key={id}>
                     <select
                       aria-label="Variants"
@@ -211,7 +210,7 @@ export default function Product({ data: { product, suggestions } }) {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const query = graphql`
@@ -265,4 +264,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

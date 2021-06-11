@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import slugify from '@sindresorhus/slugify';
 import Layout from '../../../components/layout';
 import ProductListing from '../../../components/product-listing';
-import { Seo } from '../../../components/seo';
+import Seo from '../../../components/seo';
 import { MoreButton } from '../../../components/more-button';
 import { title } from '../index.module.css';
 

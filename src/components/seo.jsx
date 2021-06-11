@@ -1,16 +1,16 @@
-import * as React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
-import { useLocation } from "@reach/router"
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
+import { useLocation } from '@reach/router';
 
-export function Seo({
-  title = "",
-  description = "",
-  pathname = "",
-  image = "",
+function Seo({
+  title = '',
+  description = '',
+  pathname = '',
+  image = '',
   children = null,
 }) {
-  const location = useLocation()
+  const location = useLocation();
   const {
     site: { siteMetadata },
   } = useStaticQuery(graphql`
@@ -27,7 +27,7 @@ export function Seo({
         }
       }
     }
-  `)
+  `);
 
   const {
     siteTitle,
@@ -37,14 +37,14 @@ export function Seo({
     siteImage,
     hrefLang,
     twitter,
-  } = siteMetadata
+  } = siteMetadata;
 
   const seo = {
     title: title || siteTitleDefault,
     description: description || siteDescription,
     url: pathname ? `${siteUrl}${pathname}` : location.href,
     image: `${siteUrl}${image || siteImage}`,
-  }
+  };
 
   return (
     <Helmet
@@ -92,5 +92,7 @@ export function Seo({
       )}
       {children}
     </Helmet>
-  )
+  );
 }
+
+export default Seo;
