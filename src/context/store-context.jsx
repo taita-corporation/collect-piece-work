@@ -56,6 +56,7 @@ export const StoreProvider = ({ children }) => {
           );
           if (!existingCheckout.completedAt) {
             setCheckoutItem(existingCheckout);
+
             return;
           }
         } catch (e) {
@@ -93,6 +94,7 @@ export const StoreProvider = ({ children }) => {
       });
   };
 
+  // カートから削除
   const removeLineItem = (checkoutID, lineItemID) => {
     setLoading(true);
 
