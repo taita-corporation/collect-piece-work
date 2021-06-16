@@ -3,12 +3,12 @@ import { graphql, Link } from 'gatsby';
 import isEqual from 'lodash.isequal';
 import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
 import { CgChevronRight as ChevronIcon } from 'react-icons/cg';
-import Layout from '../../../components/layout';
-import { StoreContext } from '../../../context/store-context';
-import AddToCart from '../../../components/add-to-cart';
-import { NumericInput } from '../../../components/numeric-input';
-import { formatPrice } from '../../../utils/format-price';
-import Seo from '../../../components/seo';
+import Layout from '../../components/layout';
+import { StoreContext } from '../../context/store-context';
+import AddToCart from '../../components/add-to-cart';
+import { NumericInput } from '../../components/numeric-input';
+import { formatPrice } from '../../utils/format-price';
+import Seo from '../../components/seo';
 import {
   productBox,
   container,
@@ -30,6 +30,7 @@ import {
 } from './product-page.module.css';
 
 export default function Product({ data: { product, suggestions } }) {
+  console.log(product);
   const {
     options,
     variants,
@@ -131,6 +132,7 @@ export default function Product({ data: { product, suggestions } }) {
                             : `Product Image of ${title} #${index + 1}`
                         }
                         image={image.gatsbyImageData}
+                        placeholder="tracedSVG"
                       />
                     </li>
                   ))}
@@ -200,11 +202,6 @@ export default function Product({ data: { product, suggestions } }) {
                 <Link to={product.productTypeSlug}>{product.productType}</Link>
               </span>
               <span className={labelFont}>Tags</span>
-              <span className={tagList}>
-                {product.tags.map((tag) => (
-                  <Link to={`/search?t=${tag}`}>{tag}</Link>
-                ))}
-              </span>
             </div>
           </div>
         </div>
@@ -214,15 +211,11 @@ export default function Product({ data: { product, suggestions } }) {
 }
 
 export const query = graphql`
-  query($id: String!, $productType: String!) {
+  query($id: String!) {
     product: shopifyProduct(id: { eq: $id }) {
       title
       description
       productType
-      productTypeSlug: gatsbyPath(
-        filePath: "/products/{ShopifyProduct.productType}"
-      )
-      tags
       priceRangeV2 {
         maxVariantPrice {
           amount
@@ -257,7 +250,6 @@ export const query = graphql`
     }
     suggestions: allShopifyProduct(
       limit: 3
-      filter: { productType: { eq: $productType }, id: { ne: $id } }
     ) {
       nodes {
         ...ProductCard
