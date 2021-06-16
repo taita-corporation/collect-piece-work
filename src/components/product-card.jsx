@@ -53,6 +53,7 @@ export function ProductCard({ product, eager }) {
           alt={firstImage?.altText ?? title}
           image={firstImage?.gatsbyImageData ?? storefrontImageData}
           loading={eager ? 'eager' : 'lazy'}
+          placeholder="tracedSVG"
         />
       </div>
       <div className={productDetailsStyle}>
