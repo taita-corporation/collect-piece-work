@@ -1,27 +1,25 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StoreContext } from "../context/store-context"
-import Logo from "../icons/logo"
-import { Navigation } from "./navigation"
-import { CartButton } from "./cart-button"
-import SearchIcon from "../icons/search"
-import { Toast } from "./toast"
+import * as React from 'react';
+import { Link } from 'gatsby';
+import { StoreContext } from '../context/store-context';
+import Logo from '../icons/logo';
+import { Navigation } from './navigation';
+import { CartButton } from './cart-button';
+import SearchIcon from '../icons/search';
+import { Toast } from './toast';
 import {
   header,
   container,
   logo as logoCss,
   searchButton,
   nav,
-} from "./header.module.css"
+} from './header.module.css';
 
 export function Header() {
-  const { checkout, loading, didJustAddToCart } = React.useContext(StoreContext)
+  const { checkout, loading, didJustAddToCart } = React.useContext(StoreContext);
 
-  const items = checkout ? checkout.lineItems : []
+  const items = checkout ? checkout.lineItems : [];
 
-  const quantity = items.reduce((total, item) => {
-    return total + item.quantity
-  }, 0)
+  const quantity = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className={container}>
@@ -37,10 +35,11 @@ export function Header() {
       </header>
       <Toast show={loading || didJustAddToCart}>
         {!didJustAddToCart ? (
-          "Updating…"
+          'Updating…'
         ) : (
           <>
-            Added to cart{" "}
+            Added to cart
+            {' '}
             <svg
               width="14"
               height="14"
@@ -64,5 +63,5 @@ export function Header() {
         )}
       </Toast>
     </div>
-  )
+  );
 }

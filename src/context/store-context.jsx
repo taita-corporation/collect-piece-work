@@ -57,6 +57,7 @@ export const StoreProvider = ({ children }) => {
           if (!existingCheckout.completedAt) {
             setCheckoutItem(existingCheckout);
 
+            // 抜ける
             return;
           }
         } catch (e) {
@@ -88,13 +89,18 @@ export const StoreProvider = ({ children }) => {
       .addLineItems(checkoutID, lineItemsToUpdate)
       .then((res) => {
         setCheckout(res);
+        console.log(res);
+        console.log(checkout.lineItems);
         setLoading(false);
         setDidJustAddToCart(true);
         setTimeout(() => setDidJustAddToCart(false), 3000);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
-  // カートから削除
+  // カートからlineitemを削除
   const removeLineItem = (checkoutID, lineItemID) => {
     setLoading(true);
 
@@ -106,6 +112,7 @@ export const StoreProvider = ({ children }) => {
       });
   };
 
+  // line itemをアップデート
   const updateLineItem = (checkoutID, lineItemID, quantity) => {
     setLoading(true);
 

@@ -10,11 +10,11 @@ export default function AddToCart({
   function addToCart(e) {
     e.preventDefault();
     addVariantToCart(variantId, quantity);
+    console.log(variantId, quantity);
   }
 
   return (
     <button
-      type="submit"
       className={addToCartStyle}
       onClick={addToCart}
       disabled={!available || loading}
