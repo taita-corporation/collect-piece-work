@@ -21,7 +21,7 @@ export function NumericInput({
       />
       <button
         disabled={disabled}
-        className={increment}
+        className={`${increment} focus:outline-none`}
         aria-label="Increment"
         onClick={onIncrement}
         type="button"
@@ -31,7 +31,7 @@ export function NumericInput({
       </button>
       <button
         disabled={disabled}
-        className={decrement}
+        className={`${decrement} focus:outline-none`}
         aria-label="Decrement"
         onClick={onDecrement}
         type="button"

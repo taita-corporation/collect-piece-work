@@ -153,10 +153,10 @@ export default function Product({ data: { product, suggestions } }) {
             <span className={noImagePreview}>No Preview image</span>
           )}
           <div>
-            <div className={breadcrumb}>
+            {/* <div className={breadcrumb}>
               <Link to={product.productTypeSlug}>{product.productType}</Link>
               <ChevronIcon size={12} />
-            </div>
+          </div> */}
             <h1 className={header}>{title}</h1>
             <p className={productDescription}>{description}</p>
             <h2 className={priceValue}>
@@ -183,12 +183,12 @@ export default function Product({ data: { product, suggestions } }) {
             <div className={addToCartStyle}>
               <NumericInput
                 aria-label="Quantity"
-                onIncrement={() => setQuantity((q) => Math.min(q + 1, 20))}
+                onIncrement={() => setQuantity((q) => Math.min(q + 1, 1))}
                 onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
                 onChange={(event) => setQuantity(event.currentTarget.value)}
                 value={quantity}
                 min="1"
-                max="20"
+                max="1"
               />
               <AddToCart
                 variantId={productVariant.storefrontId}
