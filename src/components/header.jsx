@@ -2,14 +2,12 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 import { StoreContext } from '../context/store-context';
 import Logo from '../icons/logo';
-import { Navigation } from './navigation';
 import { CartButton } from './cart-button';
 import { Toast } from './toast';
 import {
   header,
   container,
   logo as logoCss,
-  nav,
 } from './header.module.css';
 
 export function Header() {
@@ -17,7 +15,7 @@ export function Header() {
 
   const items = checkout ? checkout.lineItems : [];
 
-  const quantity = items.reduce((total, item) => total + item.quantity, 0);
+  const quantity = items.reduce((total, item) => total + item.quantity, 1);
 
   return (
     <div className={container}>
@@ -25,7 +23,6 @@ export function Header() {
         <Link to="/" className={logoCss}>
           <Logo />
         </Link>
-        <Navigation className={nav} />
         <CartButton quantity={quantity} />
       </header>
       <Toast show={loading || didJustAddToCart}>
