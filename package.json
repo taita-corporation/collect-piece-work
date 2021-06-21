@@ -33,6 +33,7 @@
     "gatsby-source-shopify": "rc",
     "gatsby-transformer-sharp": "^3.4.0",
     "isomorphic-fetch": "^3.0.0",
+    "keen-slider": "^5.5.1",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "query-string": "^7.0.0",
