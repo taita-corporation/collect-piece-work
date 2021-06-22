@@ -8,7 +8,9 @@ import * as s from './hero.module.css';
 
 export const Hero = () => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [pause, setPause] = React.useState(false);
   const [opacities, setOpacities] = React.useState([]);
+  const timer = React.useRef();
   const data = useStaticQuery(graphql`
   query {
     datoCmsTopPage {
@@ -33,7 +35,34 @@ export const Hero = () => {
       const newOpacities = s.details().positions.map((slide) => slide.portion);
       setOpacities(newOpacities);
     },
+    dragStart: () => {
+      setPause(true);
+    },
+    dragEnd: () => {
+      setPause(false);
+    },
   });
+
+  React.useEffect(() => {
+    sliderRef.current.addEventListener('mouseover', () => {
+      setPause(true);
+    });
+    sliderRef.current.addEventListener('mouseout', () => {
+      setPause(false);
+    });
+  }, [sliderRef]);
+
+  React.useEffect(() => {
+    timer.current = setInterval(() => {
+      if (!pause && slider) {
+        slider.next();
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(timer.current);
+    };
+  }, [pause, slider]);
 
   return (
     <>
@@ -58,6 +87,7 @@ export const Hero = () => {
               slider.moveToSlideRelative(idx);
             }}
             className={cn(s.dot, (currentSlide === idx ? 'active' : null))}
+            ariaLabel="slide to next or previous image"
           />
         ))
       )}
