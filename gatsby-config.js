@@ -42,5 +42,16 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-source-datocms',
+      options: {
+        apiToken: process.env.DATOCMS_API_TOKEN,
+        // The project environment to read from. Defaults to the primary environment:
+        environment: 'main',
+        previewMode: false,
+        // Disable automatic reloading of content when some change occurs on DatoCMS:
+        disableLiveReload: false,
+      },
+    },
   ].filter(Boolean),
 };

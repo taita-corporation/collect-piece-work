@@ -1,0 +1,9 @@
+.dot {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
