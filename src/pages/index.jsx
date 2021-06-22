@@ -23,10 +23,10 @@ export const query = graphql`
 export default function IndexPage({ data }) {
   return (
     <Layout>
-      <div className={container}>
+      <div className="container">
         <Hero />
+        <ProductListing products={data.shopifyCollection.products} />
       </div>
-      <ProductListing products={data.shopifyCollection.products} />
     </Layout>
   );
 }
