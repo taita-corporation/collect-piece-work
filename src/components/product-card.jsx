@@ -54,6 +54,7 @@ export function ProductCard({ product, eager }) {
           image={firstImage?.gatsbyImageData ?? storefrontImageData}
           loading={eager ? 'eager' : 'lazy'}
           placeholder="tracedSVG"
+          className="block rounded-none"
         />
       </div>
       <div className={productDetailsStyle}>

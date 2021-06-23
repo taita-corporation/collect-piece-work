@@ -22,10 +22,10 @@ export function Header() {
       </header>
       <Toast show={loading || didJustAddToCart}>
         {!didJustAddToCart ? (
-          'Updating…'
+          '更新中...'
         ) : (
           <>
-            Added to cart
+            バッグに追加しました
             {' '}
             <svg
               width="14"

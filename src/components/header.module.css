@@ -1,5 +1,6 @@
 .wrapper {
-  @apply container;
+  @apply container mix-blend-difference;
+  width: 100%;
   display: flex;
   align-items: center;
   position: sticky;
