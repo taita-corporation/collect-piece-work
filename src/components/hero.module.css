@@ -1,5 +1,6 @@
 .fader {
-  @apply relative w-full h-96;
+  @apply relative w-full text-center;
+  height: 500px;
 }
 
 .fader__slide {
@@ -7,7 +8,12 @@
 }
 
 .image {
-  @apply h-auto;
+  height: 500px;
+}
+
+.dots {
+  @apply absolute bottom-2 inline-block;
+  transform: translateX(-50%);
 }
 
 .dot {
@@ -18,4 +24,9 @@
   margin: 0 5px;
   padding: 5px;
   cursor: pointer;
+  @apply focus:outline-none;
+}
+
+.dot.active {
+  background: green;
 }

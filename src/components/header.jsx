@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { StoreContext } from '../context/store-context';
-import Logo from '../icons/logo';
 import { CartButton } from './cart-button';
 import { Toast } from './toast';
-import {
-  header,
-  container,
-  logo as logoCss,
-} from './header.module.css';
+import * as s from './header.module.css';
 
 export function Header() {
   const { checkout, loading, didJustAddToCart } = React.useContext(StoreContext);
@@ -18,10 +13,10 @@ export function Header() {
   const quantity = items.reduce((total, item) => total + item.quantity, 1);
 
   return (
-    <div className={container}>
-      <header className={header}>
-        <Link to="/" className={logoCss}>
-          <Logo />
+    <div className={s.wrapper}>
+      <header className={s.header}>
+        <Link to="/" className={s.logo}>
+          collect piece work
         </Link>
         <CartButton quantity={quantity} />
       </header>

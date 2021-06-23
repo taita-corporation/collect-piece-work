@@ -1,4 +1,5 @@
-.container {
+.wrapper {
+  @apply container;
   display: flex;
   align-items: center;
   position: sticky;
@@ -7,28 +8,7 @@
 }
 
 .header {
-  display: grid;
-  width: 100%;
-  padding: var(--size-gap) var(--size-gutter);
-  grid-template-columns: var(--size-input) 1fr min-content min-content;
-  grid-template-areas: "logo nada searchButton cartButton" "navHeader navHeader navHeader navHeader";
-  align-items: center;
-  background-color: var(--background);
-}
-
-.header::after {
-  grid-area: navHeader;
-  content: "";
-  display: block;
-  width: var(--space-2xl);
-  z-index: 1;
-  align-self: stretch;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
-  justify-self: flex-end;
+  @apply flex flex-row justify-between items-center w-full;
 }
 
 @media (min-width: 640px) {
@@ -38,42 +18,6 @@
 }
 
 .logo {
-  display: flex;
-  grid-area: logo;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color-secondary);
-}
-
-.logo:hover {
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.logo[aria-current="page"] {
-  color: var(--primary);
-}
-
-.nav {
-  grid-area: navHeader;
-  align-self: stretch;
-}
-
-.searchButton {
-  color: var(--text-color-secondary);
-  grid-area: searchButton;
-  width: var(--size-input);
-  height: var(--size-input);
-  display: grid;
-  place-items: center;
-}
-
-.searchButton:hover {
-  color: var(--text-color);
-}
-
-.searchButton[aria-current="page"] {
-  color: var(--primary);
+  font-family: "凸版文久見出し明朝";
+  @apply font-bold text-xl;
 }

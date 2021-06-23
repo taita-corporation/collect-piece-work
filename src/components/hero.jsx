@@ -72,25 +72,33 @@ export const Hero = () => {
             className={s.fader__slide}
             style={{ opacity: opacities[idx] }}
           >
-            <GatsbyImage image={gatsbyImageData} layout="constrained" aspectRatio={16 / 9} className={s.image} />
+            <GatsbyImage
+              image={gatsbyImageData}
+              layout="constrained"
+              aspectRatio={16 / 9}
+              placeholder="tracedSVG"
+              className={s.image}
+            />
           </div>
         ))}
-      </div>
 
-      {slider && (
-        [...Array(slider.details().size).keys()].map((idx) => (
-          /* eslint-disable jsx-a11y/control-has-associated-label */
-          <button
-            type="button"
-            key={idx}
-            onClick={() => {
-              slider.moveToSlideRelative(idx);
-            }}
-            className={cn(s.dot, (currentSlide === idx ? 'active' : null))}
-            ariaLabel="slide to next or previous image"
-          />
-        ))
-      )}
+        {slider && (
+          <div className={s.dots}>
+            { [...Array(slider.details().size).keys()].map((idx) => (
+              /* eslint-disable jsx-a11y/control-has-associated-label */
+              <button
+                type="button"
+                key={idx}
+                onClick={() => {
+                  slider.moveToSlideRelative(idx);
+                }}
+                className={cn(s.dot, (currentSlide === idx ? s.active : null))}
+                ariaLabel="slide to next or previous image"
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };
