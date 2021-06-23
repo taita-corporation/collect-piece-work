@@ -3,14 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { getShopifyImage } from 'gatsby-source-shopify';
 import { formatPrice } from '../utils/format-price';
-import {
-  productCardStyle,
-  productHeadingStyle,
-  productImageStyle,
-  productDetailsStyle,
-  productVendorStyle,
-  productPrice,
-} from './product-card.module.css';
+import * as s from './product-card.module.css';
 
 export function ProductCard({ product, eager }) {
   const {
@@ -44,25 +37,24 @@ export function ProductCard({ product, eager }) {
 
   return (
     <Link
-      className={productCardStyle}
+      className={s.productCardStyle}
       to={slug}
       aria-label={`View ${title} product page`}
     >
-      <div className={productImageStyle} data-name="product-image-box">
+      <div className={s.productImageStyle} data-name="product-image-box">
         <GatsbyImage
           alt={firstImage?.altText ?? title}
           image={firstImage?.gatsbyImageData ?? storefrontImageData}
           loading={eager ? 'eager' : 'lazy'}
-          placeholder="tracedSVG"
           className="block rounded-none"
         />
       </div>
-      <div className={productDetailsStyle}>
-        <div className={productVendorStyle}>{vendor}</div>
-        <h2 as="h2" className={productHeadingStyle}>
+      <div className={s.productDetailsStyle}>
+        <div className={s.productVendorStyle}>{vendor}</div>
+        <h2 as="h2" className={s.productHeadingStyle}>
           {title}
         </h2>
-        <div className={productPrice}>{price}</div>
+        <div className={s.productPrice}>{price}</div>
       </div>
     </Link>
   );
@@ -78,7 +70,7 @@ export const query = graphql`
     images {
       id
       altText
-      gatsbyImageData(aspectRatio: 1, width: 640)
+      gatsbyImageData(aspectRatio: 1, width: 640, placeholder: TRACED_SVG)
     }
     priceRangeV2 {
       minVariantPrice {
