@@ -13,13 +13,11 @@ export function Header() {
   const quantity = items.reduce((total, item) => total + item.quantity, 1);
 
   return (
-    <div className={s.wrapper}>
-      <header className={s.header}>
-        <Link to="/" className={s.logo}>
-          collect piece work
-        </Link>
-        <CartButton quantity={quantity} />
-      </header>
+    <header className={s.header}>
+      <Link to="/" className={s.logo}>
+        collect piece work
+      </Link>
+      <CartButton quantity={quantity} />
       <Toast show={loading || didJustAddToCart}>
         {!didJustAddToCart ? (
           '更新中...'
@@ -49,6 +47,6 @@ export function Header() {
           </>
         )}
       </Toast>
-    </div>
+    </header>
   );
 }

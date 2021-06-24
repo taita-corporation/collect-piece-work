@@ -9,7 +9,7 @@ export default function Products({ data: { products } }) {
   return (
     <Layout>
       <Seo title="商品一覧" />
-      <div className="container">
+      <div className="container mt-4">
         <ProductListing products={products.nodes} />
         {products.pageInfo.hasNextPage && (
         <MoreButton to="/search#more">More products</MoreButton>

@@ -1,21 +1,8 @@
-.wrapper {
-  @apply container mix-blend-difference;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  z-index: 1;
-  top: 0;
-}
-
 .header {
-  @apply flex flex-row justify-between items-center w-full;
-}
-
-@media (min-width: 640px) {
-  .header {
-    grid-template-areas: "logo navHeader searchButton cartButton";
-  }
+  @apply container top-0 sticky flex flex-row justify-between items-center w-full;
+  z-index: 1;
+  color: #fff;
+  mix-blend-mode: difference;
 }
 
 .logo {

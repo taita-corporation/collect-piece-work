@@ -1,8 +1,8 @@
 .productCardStyle {
+  @apply px-2 pb-4;
   max-width: 400px;
   cursor: pointer;
   text-decoration: none;
-  padding-bottom: var(--space-md);
 }
 
 .productImageStyle {

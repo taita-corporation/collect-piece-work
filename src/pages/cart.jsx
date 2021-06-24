@@ -4,22 +4,7 @@ import Layout from '../components/layout';
 import { StoreContext } from '../context/store-context';
 import { LineItem } from '../components/line-item';
 import { formatPrice } from '../utils/format-price';
-import {
-  table,
-  wrap,
-  totals,
-  grandTotal,
-  summary,
-  checkoutButton,
-  collapseColumn,
-  labelColumn,
-  imageHeader,
-  productHeader,
-  emptyStateContainer,
-  emptyStateHeading,
-  emptyStateLink,
-  title,
-} from './cart.module.css';
+import * as s from './cart.module.css';
 
 export default function CartPage() {
   const { checkout, loading } = React.useContext(StoreContext);
@@ -31,29 +16,29 @@ export default function CartPage() {
 
   return (
     <Layout>
-      <div className={wrap}>
+      <div className={s.wrap}>
         {emptyCart ? (
-          <div className={emptyStateContainer}>
-            <h1 className={emptyStateHeading}>バッグは空です</h1>
+          <div className={s.emptyStateContainer}>
+            <h1 className={s.emptyStateHeading}>バッグは空です</h1>
             <p>
               Looks like you haven’t found anything yet. We understand that
               sometimes it’s hard to chose — maybe this helps:
             </p>
-            <Link to="/search?s=BEST_SELLING" className={emptyStateLink}>
+            <Link to="/search?s=BEST_SELLING" className={s.emptyStateLink}>
               View trending products
             </Link>
           </div>
         ) : (
           <>
-            <h1 className={title}>Your cart</h1>
-            <table className={table}>
+            <h1 className={s.title}>Your cart</h1>
+            <table className={s.table}>
               <thead>
                 <tr>
-                  <th className={imageHeader}>Image</th>
-                  <th className={productHeader}>Product</th>
-                  <th className={collapseColumn}>Price</th>
+                  <th className={s.imageHeader}>Image</th>
+                  <th className={s.productHeader}>Product</th>
+                  <th className={s.collapseColumn}>Price</th>
                   <th>Qty.</th>
-                  <th className={[totals, collapseColumn].join(' ')}>Total</th>
+                  <th className={[s.totals, s.collapseColumn].join(' ')}>Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,43 +46,43 @@ export default function CartPage() {
                   <LineItem item={item} key={item.id} />
                 ))}
 
-                <tr className={summary}>
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={labelColumn}>Subtotal</td>
-                  <td className={totals}>
+                <tr className={s.summary}>
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.labelColumn}>Subtotal</td>
+                  <td className={s.totals}>
                     {formatPrice(
                       checkout.subtotalPriceV2.currencyCode,
                       checkout.subtotalPriceV2.amount,
                     )}
                   </td>
                 </tr>
-                <tr className={summary}>
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={labelColumn}>Taxes</td>
-                  <td className={totals}>
+                <tr className={s.summary}>
+                  <td classNam={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.labelColumn}>Taxes</td>
+                  <td className={s.totals}>
                     {formatPrice(
                       checkout.totalTaxV2.currencyCode,
                       checkout.totalTaxV2.amount,
                     )}
                   </td>
                 </tr>
-                <tr className={summary}>
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={labelColumn}>Shipping</td>
-                  <td className={totals}>Calculated at checkout</td>
+                <tr className={s.summary}>
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.labelColumn}>Shipping</td>
+                  <td className={s.totals}>Calculated at checkout</td>
                 </tr>
-                <tr className={grandTotal}>
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={collapseColumn} />
-                  <td className={labelColumn}>Total Price</td>
-                  <td className={totals}>
+                <tr className={s.grandTotal}>
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
+                  <td className={s.labelColumn}>Total Price</td>
+                  <td className={s.totals}>
                     {formatPrice(
                       checkout.totalPriceV2.currencyCode,
                       checkout.totalPriceV2.amount,
@@ -109,7 +94,7 @@ export default function CartPage() {
             <button
               onClick={handleCheckout}
               disabled={loading}
-              className={checkoutButton}
+              className={s.checkoutButton}
               type="submit"
             >
               Checkout

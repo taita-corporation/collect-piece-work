@@ -108,7 +108,7 @@ export default function Product({ data: { product, suggestions } }) {
           image={getSrc(firstImage.gatsbyImageData)}
         />
       ) : undefined}
-      <div className={container}>
+      <div className="container mt-4">
         <div className={productBox}>
           {hasImages && (
             <div className={productImageWrapper}>
