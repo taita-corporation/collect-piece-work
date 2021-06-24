@@ -15,7 +15,7 @@ export const Hero = () => {
   query {
     datoCmsTopPage {
       heroImage {
-        gatsbyImageData
+        gatsbyImageData(placeholder: TRACED_SVG)
       }
     }
   }
@@ -74,9 +74,6 @@ export const Hero = () => {
           >
             <GatsbyImage
               image={gatsbyImageData}
-              layout="constrained"
-              aspectRatio={16 / 9}
-              placeholder="tracedSVG"
               className={s.image}
             />
           </div>
