@@ -1,7 +1,6 @@
 import React, {
   Children,
   isValidElement,
-  useEffect,
   useState,
   useRef,
 } from 'react';
@@ -10,7 +9,7 @@ import { useKeenSlider } from 'keen-slider/react';
 import cn from 'classnames';
 import * as s from './product-slider.module.css';
 
-const ProductSlider = ({ children, className }) => {
+const ProductSlider = ({ children, className = '' }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const sliderContainerRef = useRef(null);
@@ -22,6 +21,17 @@ const ProductSlider = ({ children, className }) => {
     slideChanged(s) {
       const slideNumber = s.details().relativeSlide;
       setCurrentSlide(slideNumber);
+
+      if (thumbsContainerRef.current) {
+        const $el = document.getElementById(
+          `thumb-${s.details().relativeSlide}`,
+        );
+        if (slideNumber >= 3) {
+          thumbsContainerRef.current.scrollLeft = $el.offsetLeft;
+        } else {
+          thumbsContainerRef.current.scrollLeft = 0;
+        }
+      }
     },
   });
 
@@ -31,8 +41,7 @@ const ProductSlider = ({ children, className }) => {
         ref={ref}
         className={cn(s.slider, { [s.show]: isMounted }, 'keen-slider')}
       >
-        { slider
-        && Children.map(children, (child) => {
+        {Children.map(children, (child) => {
           if (isValidElement(child)) {
             return {
               ...child,

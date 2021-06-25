@@ -91,26 +91,6 @@ export default function Product({ data: { product, suggestions } }) {
         />
       ) : undefined}
       <div className="container mt-4">
-        <ul>
-          <ProductSlider>
-            {images.map((image, index) => (
-              <li
-                key={`product-image-${image.id}`}
-              >
-                <GatsbyImage
-                  objectFit="contain"
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  alt={
-                          image.altText
-                            ? image.altText
-                            : `Product Image of ${title} #${index + 1}`
-                        }
-                  image={image.gatsbyImageData}
-                />
-              </li>
-            ))}
-          </ProductSlider>
-        </ul>
         <div className={s.productBox}>
           {hasImages && (
             <div className={s.productImageWrapper}>
@@ -119,35 +99,27 @@ export default function Product({ data: { product, suggestions } }) {
                 aria-label="gallery"
                 aria-describedby="instructions"
               >
-                <ul className={s.productImageList}>
-                  {images.map((image, index) => (
-                    <li
-                      key={`product-image-${image.id}`}
-                      className={s.productImageListItem}
-                    >
-                      <GatsbyImage
-                        objectFit="contain"
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        alt={
+                <ul>
+                  <ProductSlider>
+                    {images.map((image, index) => (
+                      <li
+                        key={`product-image-${image.id}`}
+                      >
+                        <GatsbyImage
+                          objectFit="contain"
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          alt={
                           image.altText
                             ? image.altText
                             : `Product Image of ${title} #${index + 1}`
                         }
-                        image={image.gatsbyImageData}
-                      />
-                    </li>
-                  ))}
+                          image={image.gatsbyImageData}
+                        />
+                      </li>
+                    ))}
+                  </ProductSlider>
                 </ul>
               </div>
-              {hasMultipleImages && (
-                <div className={s.scrollForMore} id="instructions">
-                  <span aria-hidden="true">←</span>
-                  {' '}
-                  scroll for more
-                  {' '}
-                  <span aria-hidden="true">→</span>
-                </div>
-              )}
             </div>
           )}
           {!hasImages && (
@@ -231,7 +203,7 @@ export const query = graphql`
       images {
         # altText
         id
-        gatsbyImageData(layout: CONSTRAINED, width: 640, aspectRatio: 0.8)
+        gatsbyImageData(layout: CONSTRAINED, aspectRatio: 0.8)
       }
       variants {
         availableForSale

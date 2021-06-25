@@ -6,7 +6,7 @@
 .slider {
   @apply relative h-full transition-opacity duration-150;
   opacity: 0;
-  display: none;
+  /* display: none; */
 }
 
 .slider.show {
@@ -14,14 +14,25 @@
 }
 
 .album {
+  @apply w-full h-full box-content;
   overflow-y: hidden;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
 }
 
-.selected {
+.album::-webkit-scrollbar {
+  display: none;
 }
 
 .thumb {
+  @apply transition-transform transition-colors 
+  ease-linear duration-75 overflow-hidden inline-block
+  cursor-pointer h-full;
+  width: 125px;
+  width: calc(100% / 3);
+}
+
+.thumb.selected {
+  @apply bg-white opacity-70;
 }
