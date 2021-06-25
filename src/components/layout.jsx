@@ -6,7 +6,7 @@ import Seo from './seo';
 
 function Layout({ children }) {
   return (
-    <div className="bg-green-200">
+    <div className="global-background">
       <Seo />
       <SkipNavLink />
       <Header />

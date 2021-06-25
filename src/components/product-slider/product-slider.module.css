@@ -1,0 +1,27 @@
+.root {
+  @apply relative w-full h-full select-none;
+  overflow: hidden;
+}
+
+.slider {
+  @apply relative h-full transition-opacity duration-150;
+  opacity: 0;
+  display: none;
+}
+
+.slider.show {
+  opacity: 1;
+}
+
+.album {
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.selected {
+}
+
+.thumb {
+}

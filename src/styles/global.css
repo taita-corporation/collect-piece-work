@@ -12,6 +12,9 @@ body {
   margin: auto;
 }
 
-.gatsby-image-wrapper [data-main-image] {
-  border-radius: var(--radius-sm);
+.global-background {
+  background-color: #bbf3a4;
 }
+/* .gatsby-image-wrapper [data-main-image] {
+  border-radius: var(--radius-sm);
+} */

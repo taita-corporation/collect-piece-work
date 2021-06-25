@@ -5,6 +5,7 @@ import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
 import Layout from '../../components/layout';
 import { StoreContext } from '../../context/store-context';
 import AddToCart from '../../components/add-to-cart';
+import ProductSlider from '../../components/product-slider';
 import { NumericInput } from '../../components/numeric-input';
 import { formatPrice } from '../../utils/format-price';
 import Seo from '../../components/seo';
@@ -90,6 +91,26 @@ export default function Product({ data: { product, suggestions } }) {
         />
       ) : undefined}
       <div className="container mt-4">
+        <ul>
+          <ProductSlider>
+            {images.map((image, index) => (
+              <li
+                key={`product-image-${image.id}`}
+              >
+                <GatsbyImage
+                  objectFit="contain"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  alt={
+                          image.altText
+                            ? image.altText
+                            : `Product Image of ${title} #${index + 1}`
+                        }
+                  image={image.gatsbyImageData}
+                />
+              </li>
+            ))}
+          </ProductSlider>
+        </ul>
         <div className={s.productBox}>
           {hasImages && (
             <div className={s.productImageWrapper}>
