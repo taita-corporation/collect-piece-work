@@ -2,7 +2,6 @@ import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import isEqual from 'lodash.isequal';
 import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
-import { CgChevronRight as ChevronIcon } from 'react-icons/cg';
 import Layout from '../../components/layout';
 import { StoreContext } from '../../context/store-context';
 import AddToCart from '../../components/add-to-cart';
@@ -114,7 +113,6 @@ export default function Product({ data: { product, suggestions } }) {
                             : `Product Image of ${title} #${index + 1}`
                         }
                         image={image.gatsbyImageData}
-                        placeholder="tracedSVG"
                       />
                     </li>
                   ))}
