@@ -35,6 +35,24 @@
   color: var(--text-color-secondary);
 }
 
-.deployButton {
-  margin-top: var(--space-lg);
+.background {
+  margin-right: calc(50% - 45vw);
+  margin-left: calc(50% - 45vw);
+  padding-right: calc(50vw - 50%);
+  padding-left: calc(50vw - 50%);
+  height: 520px;
+}
+
+.concept {
+  @apply absolute top-0 bottom-0 right-0 left-0 my-auto w-full grid grid-cols-2;
+  background-color: white;
+  height: 90%;
+}
+
+.conceptImage {
+  @apply absolute top-1/2 left-4 shadow-md;
+}
+
+.text {
+  text-align: center;
 }

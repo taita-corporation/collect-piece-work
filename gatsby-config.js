@@ -31,6 +31,8 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-postcss',
+    'gatsby-transformer-remark',
+    'gatsby-plugin-less',
     // Add your Google Analytics ID to the .env file to enable
     // Otherwise, this plugin can be removed
     process.env.GOOGLE_ANALYTICS_ID && {
