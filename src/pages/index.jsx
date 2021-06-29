@@ -34,10 +34,17 @@ export default function IndexPage({ data }) {
         <Hero />
 
         {/* Concept Section */}
-        <div className="relative">
-          <StaticImage layout="constrained" objectFit="cover" loading="eager" src="../../static/background.png" placeholder="tracedSVG" className={s.background} />
+        <div className="relative my-2">
+          <StaticImage
+            layout="constrained"
+            objectFit="cover"
+            loading="eager"
+            src="../../static/background.png"
+            placeholder="tracedSVG"
+            className={s.background}
+          />
           <div className={s.concept}>
-            <div className="relative">
+            <div className="relative px-2">
               <GatsbyImage
                 image={data.datoCmsTopPage.conceptImage.gatsbyImageData}
                 className={s.conceptImage}
@@ -47,19 +54,20 @@ export default function IndexPage({ data }) {
                 }}
               />
             </div>
-            <div>
-              <div>collect piece work</div>
+            <div className="pr-5 top-0 bottom-0 my-auto">
+              <div as="h1" className={s.conceptHeading}>collect piece work</div>
               {/* eslint-disable react/no-danger */}
               <div
                 dangerouslySetInnerHTML={{
                   __html: data.datoCmsTopPage.conceptContentNode.childMarkdownRemark.html,
                 }}
+                className={s.conceptDesc}
               />
             </div>
           </div>
         </div>
         {/* Product Feature Section */}
-        {/* <ProductListing products={data.shopifyCollection.products} /> */}
+        <ProductListing products={data.shopifyCollection.products} />
         {/* Instagram Section */}
         {/* Shop Section */}
       </div>

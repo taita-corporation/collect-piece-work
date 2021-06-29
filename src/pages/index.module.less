@@ -1,40 +1,3 @@
-.container {
-  padding-left: var(--size-gutter-raw);
-  padding-right: var(--size-gutter-raw);
-  padding-top: var(--space-lg);
-  padding-bottom: var(--space-3xl);
-  max-width: 76ch;
-}
-
-.intro {
-  padding-bottom: var(--space-lg);
-  line-height: var(--dense);
-  font-size: var(--text-display);
-  color: var(--text-color-secondary);
-}
-
-.callOut {
-  padding-bottom: var(--space-lg);
-  font-size: var(--text-display);
-  font-weight: var(--bold);
-  line-height: var(--dense);
-  line-height: var(--dense);
-  letter-spacing: var(--tight);
-  color: var(--text-color-secondary);
-}
-
-.callOut > strong {
-  text-decoration: underline;
-}
-
-.callToAction {
-  font-size: var(--text-prose);
-  line-height: var(--dense);
-  line-height: var(--dense);
-  letter-spacing: var(--tight);
-  color: var(--text-color-secondary);
-}
-
 .background {
   margin-right: calc(50% - 45vw);
   margin-left: calc(50% - 45vw);
@@ -47,12 +10,42 @@
   @apply absolute top-0 bottom-0 right-0 left-0 my-auto w-full grid grid-cols-2;
   background-color: white;
   height: 90%;
+  border: 4px solid #479074;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    top: 5px;
+    left: 5px;
+    border: 2px solid #479074;
+  }
 }
 
 .conceptImage {
-  @apply absolute top-1/2 left-4 shadow-md;
+  @apply top-1/2 left-0 right-0 m-auto w-5/6 shadow-lg;
 }
 
-.text {
-  text-align: center;
+.conceptHeading {
+  @apply relative inline-block font-extrabold text-4xl mb-2;
+  font-family: "凸版文久見出し明朝";
+
+  &::after {
+    @apply absolute -bottom-5 left-0 right-0;
+    content: "";
+    border-bottom: 7px solid black;
+  }
+}
+
+.conceptDesc {
+  @apply font-extrabold py-8;
+  font-family: "游明朝体";
+  h2 {
+    @apply text-2xl mb-4;
+  }
+  p {
+    @apply text-base;
+    line-height: 1.8;
+  }
 }
