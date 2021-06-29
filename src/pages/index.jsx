@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
+import Heading from '../components/heading';
 import ProductListing from '../components/product-listing';
 import { Hero } from '../components/hero';
 import * as s from './index.module.less';
@@ -67,7 +68,12 @@ export default function IndexPage({ data }) {
           </div>
         </div>
         {/* Product Feature Section */}
-        <ProductListing products={data.shopifyCollection.products} />
+        <div>
+          <Heading>
+            FEATURE
+          </Heading>
+          <ProductListing products={data.shopifyCollection.products} />
+        </div>
         {/* Instagram Section */}
         {/* Shop Section */}
       </div>

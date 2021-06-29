@@ -1,0 +1,35 @@
+.wrapper {
+  @apply w-full relative h-16 text-center
+  mb-10 mt-14;
+  &::after {
+    content: "";
+    display: block;
+    background-color: #479074;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 3px;
+    z-index: 0;
+  }
+}
+
+.inner {
+  @apply inline-block absolute 
+  font-extrabold text-3xl  
+  h-16 px-8;
+  font-family: "凸版文久見出し明朝";
+  line-height: 3.8rem;
+  background-color: #e0f0e7;
+  border-top: 2px solid #479074;
+  border-bottom: 2px solid #479074;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  &::after {
+    content: "";
+    @apply absolute w-full left-0;
+    bottom: 2px;
+    border-bottom: 2px solid #479074;
+  }
+}
