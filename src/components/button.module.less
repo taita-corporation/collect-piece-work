@@ -1,0 +1,22 @@
+.btnWrapper {
+  @apply inline-block relative h-16 w-52;
+  z-index: 0;
+  line-height: 4rem;
+
+  .button {
+    @apply block absolute w-full text-center bg-black text-white font-extrabold
+    whitespace-nowrap;
+    font-family: "凸版文久見出し明朝";
+    z-index: 1;
+    transition: all 0.1s ease;
+    &:hover {
+      transform: translate(-5px, -5px);
+    }
+  }
+
+  &::after {
+    content: "";
+    z-index: 0;
+    @apply block absolute h-full w-full top-1 left-1 bg-green-600;
+  }
+}

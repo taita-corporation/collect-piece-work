@@ -4,6 +4,7 @@ import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import Heading from '../components/heading';
 import ProductListing from '../components/product-listing';
+import Button from '../components/button';
 import { Hero } from '../components/hero';
 import * as s from './index.module.less';
 
@@ -69,10 +70,11 @@ export default function IndexPage({ data }) {
         </div>
         {/* Product Feature Section */}
         <div>
-          <Heading>
-            FEATURE
-          </Heading>
+          <Heading> FEATURE </Heading>
           <ProductListing products={data.shopifyCollection.products} />
+          <div className="text-center my-4">
+            <Button to="/products">VIEW MORE</Button>
+          </div>
         </div>
         {/* Instagram Section */}
         {/* Shop Section */}
