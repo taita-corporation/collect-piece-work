@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import cn from 'classnames';
 import Layout from '../components/layout';
 import Heading from '../components/heading';
 import ProductListing from '../components/product-listing';
@@ -41,15 +42,21 @@ export default function IndexPage({ data }) {
             layout="constrained"
             objectFit="cover"
             loading="eager"
-            src="../../static/background.png"
+            src="../../static/collect_flower.png"
+            quality={70}
             placeholder="tracedSVG"
             className={s.background}
+            style={{
+              height: 520,
+            }}
+            alt="flower background"
           />
-          <div className={s.concept}>
+          <div className={cn(s.frame, s.concept)}>
             <div className="relative px-2">
               <GatsbyImage
                 image={data.datoCmsTopPage.conceptImage.gatsbyImageData}
                 className={s.conceptImage}
+                alt={data.datoCmsTopPage.conceptImage.alt}
                 style={{
                   position: 'absolute',
                   transform: 'translateY(-50%)',
@@ -71,7 +78,7 @@ export default function IndexPage({ data }) {
 
         {/* Product Feature Section */}
         <div>
-          <Heading>FEATURE</Heading>
+          <Heading bgColor="green">FEATURE</Heading>
           <ProductListing products={data.shopifyCollection.products} />
           <div className="text-center my-4">
             <Button to="/products">VIEW MORE</Button>
@@ -85,9 +92,25 @@ export default function IndexPage({ data }) {
             objectFit="cover"
             loading="eager"
             src="../../static/flower.png"
+            quality={70}
             placeholder="tracedSVG"
-            className={s.background}
+            className={cn(s.background, s.instagramBg)}
+            style={{
+              height: 920,
+            }}
+            alt="flower background"
           />
+          <div className={cn(s.frame, s.instagram)}>
+            <Heading bgColor="white">INSTAGRAM</Heading>
+            <div className="grid grid-cols-5">
+              <div>grid</div>
+              <div>grid</div>
+              <div>grid</div>
+              <div>grid</div>
+              <div>grid</div>
+              <div>grid</div>
+            </div>
+          </div>
         </div>
         {/* Shop Section */}
       </div>

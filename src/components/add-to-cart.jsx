@@ -10,7 +10,6 @@ export default function AddToCart({
   function addToCart(e) {
     e.preventDefault();
     addVariantToCart(variantId, quantity);
-    console.log(variantId, quantity);
   }
 
   return (

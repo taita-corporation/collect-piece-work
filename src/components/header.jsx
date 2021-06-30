@@ -10,7 +10,7 @@ export function Header() {
 
   const items = checkout ? checkout.lineItems : [];
 
-  const quantity = items.reduce((total, item) => total + item.quantity, 1);
+  const quantity = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className={s.header}>

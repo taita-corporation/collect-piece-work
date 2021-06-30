@@ -59,7 +59,7 @@ export default function CartPage() {
                   </td>
                 </tr>
                 <tr className={s.summary}>
-                  <td classNam={s.collapseColumn} />
+                  <td className={s.collapseColumn} />
                   <td className={s.collapseColumn} />
                   <td className={s.collapseColumn} />
                   <td className={s.labelColumn}>Taxes</td>

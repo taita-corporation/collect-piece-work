@@ -15,6 +15,7 @@ export const Hero = () => {
   query {
     datoCmsTopPage {
       heroImage {
+        alt
         gatsbyImageData(placeholder: TRACED_SVG)
       }
     }
@@ -71,10 +72,13 @@ export const Hero = () => {
           <div
             className={s.fader__slide}
             style={{ opacity: opacities[idx] }}
+          // eslint-disable-next-line react/no-array-index-key
+            key={idx}
           >
             <GatsbyImage
               image={gatsbyImageData}
               className={s.image}
+              alt={data.datoCmsTopPage.heroImage.alt ?? ''}
             />
           </div>
         ))}
@@ -90,7 +94,7 @@ export const Hero = () => {
                   slider.moveToSlideRelative(idx);
                 }}
                 className={cn(s.dot, (currentSlide === idx ? s.active : null))}
-                ariaLabel="slide to next or previous image"
+                aria-label="slide to next or previous image"
               />
             ))}
           </div>
