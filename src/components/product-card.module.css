@@ -1,5 +1,5 @@
 .productCardStyle {
-  @apply px-2 pb-4;
+  @apply mx-2 my-4;
   max-width: 400px;
   cursor: pointer;
   text-decoration: none;
