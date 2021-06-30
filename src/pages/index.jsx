@@ -68,15 +68,27 @@ export default function IndexPage({ data }) {
             </div>
           </div>
         </div>
+
         {/* Product Feature Section */}
         <div>
-          <Heading> FEATURE </Heading>
+          <Heading>FEATURE</Heading>
           <ProductListing products={data.shopifyCollection.products} />
           <div className="text-center my-4">
             <Button to="/products">VIEW MORE</Button>
           </div>
         </div>
+
         {/* Instagram Section */}
+        <div className="relative my-2">
+          <StaticImage
+            layout="constrained"
+            objectFit="cover"
+            loading="eager"
+            src="../../static/flower.png"
+            placeholder="tracedSVG"
+            className={s.background}
+          />
+        </div>
         {/* Shop Section */}
       </div>
     </Layout>

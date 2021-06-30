@@ -45,6 +45,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-instagram',
+      options: {
+        username: '43632623305',
+      },
+    },
+    {
       resolve: 'gatsby-source-datocms',
       options: {
         apiToken: process.env.DATOCMS_API_TOKEN,
