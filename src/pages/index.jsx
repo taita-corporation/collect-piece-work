@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import Heading from '../components/heading';
 import ProductListing from '../components/product-listing';
 import Button from '../components/button';
+import InstagramPost from '../components/instagram/instagram-post';
 import { Hero } from '../components/hero';
 import * as s from './index.module.less';
 
@@ -26,6 +27,11 @@ export const query = graphql`
       conceptImage {
         alt
         gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, aspectRatio: 1.5, height: 300)
+      }
+    }
+    allInstaNode(limit: 10) {
+      nodes {
+        ...InstagramPost
       }
     }
   }
@@ -94,7 +100,7 @@ export default function IndexPage({ data }) {
             src="../../static/flower.png"
             quality={70}
             placeholder="tracedSVG"
-            className={cn(s.background, s.instagramBg)}
+            className={s.background}
             style={{
               height: 920,
             }}
@@ -103,12 +109,9 @@ export default function IndexPage({ data }) {
           <div className={cn(s.frame, s.instagram)}>
             <Heading bgColor="white">INSTAGRAM</Heading>
             <div className="grid grid-cols-5">
-              <div>grid</div>
-              <div>grid</div>
-              <div>grid</div>
-              <div>grid</div>
-              <div>grid</div>
-              <div>grid</div>
+              {data.allInstaNode.nodes.map((node) => (
+                <InstagramPost key={node.id} node={node} />
+              ))}
             </div>
           </div>
         </div>

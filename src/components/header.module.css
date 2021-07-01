@@ -1,6 +1,6 @@
 .header {
   @apply container top-0 sticky flex flex-row justify-between items-center w-full;
-  z-index: 1;
+  z-index: 99;
   color: #fff;
   mix-blend-mode: difference;
 }
