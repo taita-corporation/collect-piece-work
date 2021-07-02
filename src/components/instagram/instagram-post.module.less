@@ -1,8 +1,25 @@
 .wrapper {
+  @apply relative m-2;
+  border: 2px solid #000;
+
+  &:hover {
+    .overlay,
+    .icon {
+      opacity: 1;
+    }
+  }
 }
 
 .overlay {
+  @apply absolute top-0 bottom-0 right-0 left-0
+    opacity-0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  transiton: all 0.3s ease 0s;
 }
 
 .icon {
+  @apply absolute top-0 bottom-0 left-0 right-0 m-auto text-white;
+  z-index: 2;
+  transition: all 0.4s ease 0s;
 }

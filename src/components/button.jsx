@@ -3,11 +3,17 @@ import { Link } from 'gatsby';
 
 import * as s from './button.module.less';
 
-const Button = ({ to, children }) => (
+const Button = ({ to, isExternal, children }) => (
   <div className={s.btnWrapper}>
-    <Link to={to} className={s.button}>
-      {children}
-    </Link>
+    {isExternal ? (
+      <a href={to} className={s.button}>
+        {children}
+      </a>
+    ) : (
+      <Link to={to} className={s.button}>
+        {children}
+      </Link>
+    )}
   </div>
 );
 

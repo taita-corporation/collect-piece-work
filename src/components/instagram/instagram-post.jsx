@@ -8,19 +8,25 @@ export default function InstagramPost({ node: { id, localFile } }) {
   return (
     <a href={`https://instagram.com/p/${id}`} className={s.wrapper}>
       <div className={s.overlay}>
-        <FaInstagram className={s.icon} />
+        <FaInstagram size={24} className={s.icon} />
       </div>
-      <GatsbyImage image={localFile.childImageSharp.gatsbyImageData} />
+      <GatsbyImage
+        image={localFile.childImageSharp.gatsbyImageData}
+        alt="collect piece work instagram post"
+      />
     </a>
   );
 }
 
 export const query = graphql`
-    fragment InstagramPost on InstaNode {
-        id
-        localFile {
-            childImageSharp {
-                gatsbyImageData
-            }
-        }
-} `;
+  fragment InstagramPost on InstaNodeConnection {
+    nodes {
+      id
+      localFile {
+          childImageSharp {
+              gatsbyImageData(aspectRatio: 1)
+          }
+      }
+    }
+  } 
+`;

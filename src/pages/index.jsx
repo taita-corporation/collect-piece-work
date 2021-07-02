@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
 import Layout from '../components/layout';
 import Heading from '../components/heading';
@@ -28,11 +28,18 @@ export const query = graphql`
         alt
         gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, aspectRatio: 1.5, height: 300)
       }
+      shopImages {
+        alt
+        gatsbyImageData(aspectRatio: 1.5, placeholder: BLURRED)
+      }
+      shopInformationNode {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
     allInstaNode(limit: 10) {
-      nodes {
         ...InstagramPost
-      }
     }
   }
 `;
@@ -102,7 +109,7 @@ export default function IndexPage({ data }) {
             placeholder="tracedSVG"
             className={s.background}
             style={{
-              height: 920,
+              height: 720,
             }}
             alt="flower background"
           />
@@ -113,9 +120,44 @@ export default function IndexPage({ data }) {
                 <InstagramPost key={node.id} node={node} />
               ))}
             </div>
+            <div className="text-center mt-6 mb-4">
+              <Button isExternal to="https://instagram.com/collect_piece_work">FOLLOW US</Button>
+            </div>
           </div>
         </div>
+
         {/* Shop Section */}
+        <div className={s.shopWrapper}>
+          <GatsbyImage
+            image={getImage(data.datoCmsTopPage.shopImages[0])}
+            alt={data.datoCmsTopPage.shopImages[0].alt}
+            style={{
+              display: 'block',
+            }}
+            className={s.firstShopImage}
+          />
+          <div className="flex flex-col justify-between top-0 bottom-0 h-full pl-5">
+            <div className={s.shopInfo}>
+              <h2>
+                collect piece work
+              </h2>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.datoCmsTopPage.shopInformationNode.childMarkdownRemark.html,
+                }}
+              />
+
+            </div>
+            <div className={s.otherShopImages}>
+              {data.datoCmsTopPage.shopImages.slice(1).map((item) => (
+                <GatsbyImage
+                  image={item.gatsbyImageData}
+                  alt={item.alt}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

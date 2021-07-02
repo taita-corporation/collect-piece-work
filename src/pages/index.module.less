@@ -62,4 +62,29 @@
   }
 }
 
-// Feature Section
+// shop section
+
+.shopWrapper {
+  @apply relative flex flex-row flex-1 items-center 
+  w-full mt-8;
+  height: 420px;
+}
+
+.firstShopImage {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  bottom: 0;
+  flex-shrink: 0;
+}
+
+.shopInfo {
+}
+
+.otherShopImages {
+  @apply flex flex-row bottom-0;
+  & > div {
+    width: 50%;
+    margin-right: 10px;
+  }
+}
