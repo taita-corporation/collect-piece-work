@@ -38,7 +38,7 @@ export const query = graphql`
         }
       }
     }
-    allInstaNode(limit: 10) {
+    allInstaNode(limit: 10, sort: {fields: timestamp, order: DESC}) {
         ...InstagramPost
     }
   }
