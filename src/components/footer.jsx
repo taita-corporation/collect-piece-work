@@ -1,42 +1,34 @@
 import * as React from 'react';
-import Logo from '../icons/logo';
-import * as s from './footer.module.css';
+import { StaticImage } from 'gatsby-plugin-image';
+import cn from 'classnames';
+import * as s from './footer.module.less';
 
 export function Footer() {
   return (
-    <footer className={s.footerStyle}>
-      <div className={s.blurb}>
-        <div className={s.logos}>
-          <Logo />
-        </div>
-        <strong>gatsby-starter-shopify</strong>
-        {' '}
-        change this by editing
-        {' '}
-        <code>src/components/footer.jsx</code>
-      </div>
-      <nav className={s.links} aria-label="footer">
+    <footer className="container relative h-52 lg:h-72 mt-8">
+      <StaticImage
+        src="../../static/collect_flower.png"
+        placeholder="tracedSVG"
+        className={s.background}
+      />
+      <nav className={s.nav} aria-label="footer">
+        <ul className={s.footerNavList}>
+          <li className={cn(s.footerNavListItem, s.navTitle)}>
+            collect piece work online store
+          </li>
+          <li className={s.footerNavListItem}>
+            <a href="https://www.gatsbyjs.com/cloud/">タイタコーポレイション</a>
+          </li>
+        </ul>
         <ul className={s.footerNavList}>
           <li className={s.footerNavListItem}>
             <a href="https://github.com/gatsbyjs/gatsby-starter-shopify">
-              Source Code and Docs
+              プライバシーポリシー
             </a>
           </li>
           <li className={s.footerNavListItem}>
-            <a href="https://www.gatsbyjs.com/cloud/">About Gatsby Cloud</a>
+            <a href="https://www.gatsbyjs.com/cloud/">特定商取引法に基づく表記</a>
           </li>
-          {process.env.GATSBY_DEMO_STORE === 'true' && (
-            <li className={s.footerNavListItem}>
-              <a href="https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-shopify&utm_campaign=shopify-starter">
-                <img
-                  src="https://www.gatsbyjs.com/deploynow.png"
-                  alt="Deploy to Gatsby Cloud"
-                  height="38"
-                  width="251"
-                />
-              </a>
-            </li>
-          )}
         </ul>
       </nav>
       <div className={s.copyright}>

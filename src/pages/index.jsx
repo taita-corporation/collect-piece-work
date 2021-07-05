@@ -58,10 +58,7 @@ export default function IndexPage({ data }) {
             src="../../static/collect_flower.png"
             quality={70}
             placeholder="tracedSVG"
-            className={s.background}
-            style={{
-              height: 520,
-            }}
+            className={cn(s.background, s.concept)}
             alt="flower background"
           />
           <div className={cn(s.frame, s.concept)}>
@@ -90,7 +87,7 @@ export default function IndexPage({ data }) {
         </div>
 
         {/* Product Feature Section */}
-        <div>
+        <div className="py-8">
           <Heading bgColor="green">FEATURE</Heading>
           <ProductListing products={data.shopifyCollection.products} />
           <div className="text-center my-4">
@@ -99,7 +96,7 @@ export default function IndexPage({ data }) {
         </div>
 
         {/* Instagram Section */}
-        <div className="relative my-2">
+        <div className="relative my-8">
           <StaticImage
             layout="constrained"
             objectFit="cover"
@@ -107,20 +104,17 @@ export default function IndexPage({ data }) {
             src="../../static/flower.png"
             quality={70}
             placeholder="tracedSVG"
-            className={s.background}
-            style={{
-              height: 720,
-            }}
+            className={cn(s.background, s.instagram)}
             alt="flower background"
           />
           <div className={cn(s.frame, s.instagram)}>
             <Heading bgColor="white">INSTAGRAM</Heading>
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-5 lg:mt-6">
               {data.allInstaNode.nodes.map((node) => (
                 <InstagramPost key={node.id} node={node} />
               ))}
             </div>
-            <div className="text-center mt-6 mb-4">
+            <div className="text-center mt-6 lg:mt-20 mb-4">
               <Button isExternal to="https://instagram.com/collect_piece_work">FOLLOW US</Button>
             </div>
           </div>

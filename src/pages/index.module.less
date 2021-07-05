@@ -2,6 +2,19 @@
   position: relative;
   margin-right: calc(50% - 45vw);
   margin-left: calc(50% - 45vw);
+  opacity: 0.7;
+
+  &.concept {
+    height: 520px;
+  }
+
+  &.instagram {
+    height: 720px;
+
+    @media only screen and (min-width: 1024px) {
+      height: 920px;
+    }
+  }
 }
 
 // Concept Section
@@ -66,7 +79,7 @@
 
 .shopWrapper {
   @apply relative flex flex-row flex-1 items-center 
-  w-full mt-8;
+  w-full my-8;
   height: 420px;
 }
 
@@ -79,6 +92,20 @@
 }
 
 .shopInfo {
+  h2 {
+    font-weight: 800;
+    font-size: 1.5rem;
+    font-family: "凸版文久見出し明朝";
+  }
+  div {
+    font-family: "游明朝体";
+    font-weight: 800;
+    line-height: 1.5;
+    margin-top: 3rem;
+  }
+  p {
+    margin-bottom: 2rem;
+  }
 }
 
 .otherShopImages {

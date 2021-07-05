@@ -1,0 +1,52 @@
+.background {
+  position: relative;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  height: 18rem;
+
+  &::after {
+    content: "";
+    @apply absolute top-0 bottom-0 left-0 right-0;
+    z-index: 1;
+    opacity: 0.3;
+    background-color: #000;
+  }
+}
+
+.nav {
+  @apply absolute top-0 pt-10 
+  flex md:flex-row items-center justify-start
+  text-white;
+  font-weight: 800;
+  z-index: 2;
+  font-family: "游明朝体";
+}
+
+.copyright {
+  @apply absolute bottom-0
+  text-white;
+  font-size: var(--text-xs);
+  z-index: 2;
+}
+
+.navTitle {
+  font-family: "凸版文久見出し明朝";
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.footerNavList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media screen and (min-width: 640px) {
+    &:nth-child(2) {
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+.footerNavListItem {
+  margin-bottom: 1rem;
+}
