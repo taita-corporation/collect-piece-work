@@ -5,7 +5,7 @@ module.exports = {
     siteTitle: 'collect piece work',
     siteTitleDefault: 'ファッションを通してモノと人、人と人をつなぐ',
     siteUrl: 'https://shopify-demo.gatsbyjs.com',
-    hrefLang: 'en',
+    hrefLang: 'ja',
     siteDescription:
       'A Gatsby starter using the latest Shopify plugin showcasing a store with product overview, individual product pages, and a cart.',
     siteImage: '/default-og-image.jpg',

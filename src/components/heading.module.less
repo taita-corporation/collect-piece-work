@@ -1,6 +1,6 @@
 .wrapper {
-  @apply w-full relative h-16 text-center
-  mb-10 mt-14;
+  @apply w-full relative h-12 md:h-16 text-center
+  mb-8 mt-10 md:mb-10 md:mt-14;
   &::after {
     content: "";
     display: block;
@@ -12,18 +12,26 @@
     height: 3px;
     z-index: 0;
   }
+
+  &.margin {
+    @apply md:mt-6 md:mb-5 lg:mb-8;
+  }
 }
 
 .inner {
   @apply inline-block absolute 
-  font-extrabold text-3xl  
-  h-16 px-8;
+  font-extrabold text-2xl md:text-3xl  
+  h-12 px-6 md:h-16 md:px-8;
+  line-height: 2.6rem;
   font-family: "凸版文久見出し明朝";
-  line-height: 3.8rem;
   border-top: 2px solid #479074;
   border-bottom: 2px solid #479074;
   transform: translateX(-50%);
   z-index: 1;
+
+  @media only screen and (min-width: 768px) {
+    line-height: 3.8rem;
+  }
 
   &.green {
     background-color: #e0f0e7;

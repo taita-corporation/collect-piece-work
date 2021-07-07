@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
@@ -43,7 +43,23 @@ export const query = graphql`
     }
   }
 `;
+
 export default function IndexPage({ data }) {
+  const [width, setWidth] = useState(undefined);
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const instaPosts = data.allInstaNode.nodes.map((node) => (
+    <InstagramPost key={node.id} node={node} />
+  ));
+
   return (
     <Layout>
       <div className="container">
@@ -62,18 +78,14 @@ export default function IndexPage({ data }) {
             alt="flower background"
           />
           <div className={cn(s.frame, s.concept)}>
-            <div className="relative px-2">
+            <div className="relative px-2 text-center">
               <GatsbyImage
                 image={data.datoCmsTopPage.conceptImage.gatsbyImageData}
                 className={s.conceptImage}
                 alt={data.datoCmsTopPage.conceptImage.alt}
-                style={{
-                  position: 'absolute',
-                  transform: 'translateY(-50%)',
-                }}
               />
             </div>
-            <div className="pr-5 top-0 bottom-0 my-auto">
+            <div className="text-center md:pr-5 md:top-0 md:bottom-0 md:my-auto">
               <div as="h1" className={s.conceptHeading}>collect piece work</div>
               {/* eslint-disable react/no-danger */}
               <div
@@ -96,6 +108,11 @@ export default function IndexPage({ data }) {
         </div>
 
         {/* Instagram Section */}
+        {width < 768 && (
+        <Heading bgColor="green">
+          INSTAGRAM
+        </Heading>
+        ) }
         <div className="relative my-8">
           <StaticImage
             layout="constrained"
@@ -108,11 +125,10 @@ export default function IndexPage({ data }) {
             alt="flower background"
           />
           <div className={cn(s.frame, s.instagram)}>
-            <Heading bgColor="white">INSTAGRAM</Heading>
-            <div className="grid grid-cols-5 lg:mt-6">
-              {data.allInstaNode.nodes.map((node) => (
-                <InstagramPost key={node.id} node={node} />
-              ))}
+            {width >= 768 && <Heading bgColor="white">INSTAGRAM</Heading> }
+            <div className={cn(s.listing, 'lg:mt-6')}>
+              {width < 768 ? instaPosts.slice(0, 6)
+                : width < 1280 ? instaPosts.slice(0, 8) : instaPosts}
             </div>
             <div className="text-center mt-6 lg:mt-20 mb-4">
               <Button isExternal to="https://instagram.com/collect_piece_work">FOLLOW US</Button>
@@ -130,7 +146,7 @@ export default function IndexPage({ data }) {
             }}
             className={s.firstShopImage}
           />
-          <div className="flex flex-col justify-between top-0 bottom-0 h-full pl-5">
+          <div className="flex flex-col justify-between md:top-0 md:bottom-0 md:h-full md:pl-5">
             <div className={s.shopInfo}>
               <h2>
                 collect piece work

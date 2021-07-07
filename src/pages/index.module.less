@@ -3,6 +3,11 @@
   margin-right: calc(50% - 45vw);
   margin-left: calc(50% - 45vw);
   opacity: 0.7;
+  display: none !important;
+
+  @media only screen and (min-width: 768px) {
+    display: inline-block !important;
+  }
 
   &.concept {
     height: 520px;
@@ -19,7 +24,8 @@
 
 // Concept Section
 .frame {
-  @apply absolute top-0 bottom-0 right-0 left-0 my-auto w-full;
+  @apply md:absolute md:top-0 md:bottom-0 md:right-0 md:left-0 my-auto w-full
+  py-5;
   height: 90%;
   border: 4px solid #479074;
 
@@ -34,64 +40,91 @@
   }
 
   &.concept {
-    @apply grid grid-cols-2;
+    @apply flex flex-col-reverse md:grid md:grid-cols-2;
     background-color: white;
   }
 
   &.instagram {
     @apply w-auto;
     background-color: #fdfbf3;
-    margin-right: calc(50% - 42vw);
-    margin-left: calc(50% - 42vw);
-    padding-right: calc(42vw - 50%);
-    padding-left: calc(42vw - 50%);
+    @media only screen and (min-width: 768px) {
+      margin-right: calc(50% - 42vw);
+      margin-left: calc(50% - 42vw);
+      padding-right: calc(42vw - 50%);
+      padding-left: calc(42vw - 50%);
+    }
   }
 }
 
 .conceptImage {
-  @apply top-1/2 left-0 right-0 m-auto w-5/6 shadow-lg;
+  @apply md:top-1/2 left-0 right-0 md:m-auto md:w-5/6 md:shadow-lg
+  my-4;
+
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    transform: translateY(-50%);
+  }
 }
 
 .conceptHeading {
-  @apply relative inline-block font-extrabold text-4xl mb-2;
+  @apply text-2xl
+  relative inline-block font-extrabold md:text-4xl md:mb-2;
   font-family: "凸版文久見出し明朝";
 
   &::after {
-    @apply absolute -bottom-5 left-0 right-0;
+    @apply absolute -bottom-3 left-0 right-0;
     content: "";
-    border-bottom: 7px solid black;
+    border-bottom: 5px solid black;
+  }
+
+  @media only screen and (min-width: 768px) {
+    &::after {
+      @apply absolute -bottom-5 left-0 right-0;
+      content: "";
+      border-bottom: 7px solid black;
+    }
   }
 }
 
 .conceptDesc {
-  @apply font-extrabold py-8;
+  @apply pt-8 pb-6 md:pb-8 px-4 md:px-0;
   font-family: "游明朝体";
   h2 {
-    @apply text-2xl mb-4;
+    @apply text-lg md:text-2xl mb-4 font-extrabold;
   }
   p {
-    @apply text-base;
+    @apply text-base text-left font-semibold;
     line-height: 1.8;
   }
+}
+
+// instagram section
+
+.listing {
+  display: grid;
+  grid-template-columns: var(--insta-grid);
+  place-items: start center;
 }
 
 // shop section
 
 .shopWrapper {
-  @apply relative flex flex-row flex-1 items-center 
+  @apply relative flex flex-col-reverse md:flex-row md:flex-1 items-center 
   w-full my-8;
   height: 420px;
 }
 
 .firstShopImage {
-  position: absolute;
-  width: 60%;
-  height: 100%;
-  bottom: 0;
-  flex-shrink: 0;
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    bottom: 0;
+  }
 }
 
 .shopInfo {
+  flex-shrink: 0;
   h2 {
     font-weight: 800;
     font-size: 1.5rem;
@@ -101,15 +134,23 @@
     font-family: "游明朝体";
     font-weight: 800;
     line-height: 1.5;
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   p {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+  @media only screen and (min-width: 768px) {
+    div {
+      margin-top: 3rem;
+    }
+    p {
+      margin-bottom: 2rem;
+    }
   }
 }
 
 .otherShopImages {
-  @apply flex flex-row bottom-0;
+  @apply hidden md:flex md:flex-row bottom-0;
   & > div {
     width: 50%;
     margin-right: 10px;

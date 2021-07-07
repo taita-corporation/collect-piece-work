@@ -90,12 +90,19 @@
 
   /* product */
   --product-grid: 1fr;
+  --insta-grid: 1fr 1fr;
 }
 
 /* role-based token adjustments per breakpoint */
 @media (min-width: 640px) {
   :root {
     --product-grid: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --insta-grid: repeat(4, 1fr);
   }
 }
 
@@ -112,5 +119,6 @@
 @media (min-width: 1280px) {
   :root {
     --product-grid: repeat(4, 1fr);
+    --insta-grid: repeat(5, 1fr);
   }
 }
