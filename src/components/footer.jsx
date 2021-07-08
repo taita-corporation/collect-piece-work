@@ -5,7 +5,7 @@ import * as s from './footer.module.less';
 
 export function Footer() {
   return (
-    <footer className="container relative h-52 lg:h-72 mt-8">
+    <footer className="container relative h-52 md:h-72 mt-8 py-2">
       <StaticImage
         src="../../static/collect_flower.png"
         placeholder="tracedSVG"
@@ -14,7 +14,7 @@ export function Footer() {
       <nav className={s.nav} aria-label="footer">
         <ul className={s.footerNavList}>
           <li className={cn(s.footerNavListItem, s.navTitle)}>
-            collect piece work online store
+            collect piece work online shop
           </li>
           <li className={s.footerNavListItem}>
             <a href="https://www.gatsbyjs.com/cloud/">タイタコーポレイション</a>

@@ -6,13 +6,7 @@ import { StoreContext } from '../context/store-context';
 import { formatPrice } from '../utils/format-price';
 import DeleteIcon from '../icons/delete';
 import { NumericInput } from './numeric-input';
-import {
-  title,
-  remove,
-  variant,
-  totals,
-  priceColumn,
-} from './line-item.module.css';
+import * as s from './line-item.module.css';
 
 export function LineItem({ item }) {
   const {
@@ -90,19 +84,19 @@ export function LineItem({ item }) {
         )}
       </td>
       <td>
-        <h2 className={title}>{item.title}</h2>
-        <div className={variant}>
+        <h2 className={s.title}>{item.title}</h2>
+        <div className={s.variant}>
           {item.variant.title === 'Default Title' ? '' : item.variant.title}
         </div>
-        <div className={remove}>
+        <div className={s.remove}>
           <button onClick={handleRemove}>
             <DeleteIcon />
             {' '}
-            Remove
+            削除
           </button>
         </div>
       </td>
-      <td className={priceColumn}>{price}</td>
+      <td className={s.priceColumn}>{price}</td>
       <td>
         <NumericInput
           disabled={loading}
@@ -113,7 +107,7 @@ export function LineItem({ item }) {
           onChange={(e) => handleQuantityChange(e.currentTarget.value)}
         />
       </td>
-      <td className={totals}>{subtotal}</td>
+      <td className={s.totals}>{subtotal}</td>
     </tr>
   );
 }

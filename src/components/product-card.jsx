@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { getShopifyImage } from 'gatsby-source-shopify';
 import { formatPrice } from '../utils/format-price';
-import * as s from './product-card.module.css';
+import * as s from './product-card.module.less';
 
 export function ProductCard({ product, eager }) {
   const {
@@ -11,7 +11,6 @@ export function ProductCard({ product, eager }) {
     priceRangeV2,
     slug,
     images: [firstImage],
-    vendor,
     storefrontImages,
   } = product;
 
@@ -41,16 +40,15 @@ export function ProductCard({ product, eager }) {
       to={slug}
       aria-label={`View ${title} product page`}
     >
-      <div className={s.productImageStyle} data-name="product-image-box">
+      <div className={s.productImageWrapper} data-name="product-image-box">
         <GatsbyImage
           alt={firstImage?.altText ?? title}
           image={firstImage?.gatsbyImageData ?? storefrontImageData}
           loading={eager ? 'eager' : 'lazy'}
-          className="block rounded-none"
+          className={s.productImageStyle}
         />
       </div>
       <div className={s.productDetailsStyle}>
-        <div className={s.productVendorStyle}>{vendor}</div>
         <h2 as="h2" className={s.productHeadingStyle}>
           {title}
         </h2>
@@ -78,6 +76,5 @@ export const query = graphql`
         currencyCode
       }
     }
-    vendor
   }
 `;

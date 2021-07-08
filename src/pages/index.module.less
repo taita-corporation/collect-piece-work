@@ -25,7 +25,7 @@
 // Concept Section
 .frame {
   @apply md:absolute md:top-0 md:bottom-0 md:right-0 md:left-0 my-auto w-full
-  py-5;
+  px-2 py-5;
   height: 90%;
   border: 4px solid #479074;
 
@@ -126,8 +126,8 @@
 .shopInfo {
   flex-shrink: 0;
   h2 {
+    font-size: 1.25rem;
     font-weight: 800;
-    font-size: 1.5rem;
     font-family: "凸版文久見出し明朝";
   }
   div {
@@ -137,13 +137,17 @@
     margin-top: 1rem;
   }
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
   @media only screen and (min-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
     div {
       margin-top: 3rem;
     }
     p {
+      font-size: 1rem;
       margin-bottom: 2rem;
     }
   }

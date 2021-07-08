@@ -89,7 +89,7 @@
   --size-gutter: calc(var(--size-gutter-raw) - 12px);
 
   /* product */
-  --product-grid: 1fr;
+  --product-grid: 1fr 1fr;
   --insta-grid: 1fr 1fr;
 }
 

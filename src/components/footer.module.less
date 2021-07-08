@@ -2,7 +2,11 @@
   position: relative;
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
-  height: 18rem;
+  height: 13rem;
+
+  @media only screen and (min-width: 768px) {
+    height: 18rem;
+  }
 
   &::after {
     content: "";
@@ -14,8 +18,8 @@
 }
 
 .nav {
-  @apply absolute top-0 pt-10 
-  flex md:flex-row items-center justify-start
+  @apply absolute top-0 pt-4 md:pt-10 
+  flex flex-col justify-start
   text-white;
   font-weight: 800;
   z-index: 2;
@@ -23,10 +27,14 @@
 }
 
 .copyright {
-  @apply absolute bottom-0
+  @apply absolute bottom-0 left-0 right-0 mx-auto text-center
   text-white;
   font-size: var(--text-xs);
   z-index: 2;
+
+  @media only screen and (min-width: 768px) {
+    @apply mx-0;
+  }
 }
 
 .navTitle {
@@ -40,9 +48,11 @@
   flex-direction: column;
   align-items: flex-start;
 
-  @media screen and (min-width: 640px) {
-    &:nth-child(2) {
-      margin-left: 1.5rem;
+  &:nth-child(2) {
+    font-size: 0.8rem;
+
+    .footerNavListItem {
+      margin-bottom: 0.4rem;
     }
   }
 }
