@@ -29,7 +29,6 @@
   @apply overflow-hidden inline-block align-middle
   cursor-pointer h-full;
   width: calc(100% / 3);
-  border: 1px solid #000;
   transition: all 75ms linear;
 }
 
