@@ -20,6 +20,7 @@ export default function Product({ data: { product, suggestions } }) {
     priceRangeV2,
     title,
     description,
+    descriptionHtml,
     images,
     images: [firstImage],
   } = product;
@@ -180,7 +181,10 @@ export default function Product({ data: { product, suggestions } }) {
                 available={available}
               />
             </div>
-            <p className={s.productDescription}>{description}</p>
+            <div
+              dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+              className={s.productDescription}
+            />
           </div>
         </div>
       </div>
@@ -193,6 +197,7 @@ export const query = graphql`
     product: shopifyProduct(id: { eq: $id }) {
       title
       description
+      descriptionHtml
       productType
       priceRangeV2 {
         maxVariantPrice {
