@@ -26,11 +26,11 @@
 }
 
 .thumb {
-  @apply transition-transform transition-colors 
-  ease-linear duration-75 overflow-hidden inline-block
+  @apply overflow-hidden inline-block align-middle
   cursor-pointer h-full;
-  width: 125px;
   width: calc(100% / 3);
+  border: 1px solid #000;
+  transition: all 75ms linear;
 }
 
 .thumb.selected {
