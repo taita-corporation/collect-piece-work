@@ -1,0 +1,40 @@
+.productCardStyle {
+  @apply mx-2 my-4;
+  max-width: 400px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.productImageWrapper {
+  margin-bottom: var(--space-md);
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+.productImageStyle {
+  @apply transform transition-transform duration-500 object-cover;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.productDetailsStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-weight: var(--semibold);
+}
+
+.productHeadingStyle {
+  width: 100%;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: var(--dense);
+}
+
+.productPrice {
+  color: var(--text-color-secondary);
+}

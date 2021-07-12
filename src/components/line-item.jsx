@@ -4,9 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { getShopifyImage } from 'gatsby-source-shopify';
 import { StoreContext } from '../context/store-context';
 import { formatPrice } from '../utils/format-price';
-import DeleteIcon from '../icons/delete';
-import { NumericInput } from './numeric-input';
-import * as s from './line-item.module.css';
+import * as s from './line-item.module.less';
 
 export function LineItem({ item }) {
   const {
@@ -52,62 +50,59 @@ export function LineItem({ item }) {
     }
   };
 
-  function doIncrement() {
-    handleQuantityChange(Number(quantity || 0) + 1);
-  }
-
-  function doDecrement() {
-    handleQuantityChange(Number(quantity || 0) - 1);
-  }
-
   const image = React.useMemo(
     () => getShopifyImage({
       image: variantImage,
       layout: 'constrained',
       crop: 'contain',
       width: 160,
-      height: 160,
+      height: 220,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [variantImage.src],
   );
 
   return (
-    <tr>
-      <td>
+    <div className={s.itemRow}>
+      <div>
         {image && (
           <GatsbyImage
             key={variantImage.src}
             image={image}
             alt={variantImage.altText ?? item.variant.title}
+            className={s.itemImage}
           />
         )}
-      </td>
-      <td>
+      </div>
+      <div>
         <h2 className={s.title}>{item.title}</h2>
         <div className={s.variant}>
           {item.variant.title === 'Default Title' ? '' : item.variant.title}
         </div>
-        <div className={s.remove}>
-          <button onClick={handleRemove}>
-            <DeleteIcon />
-            {' '}
-            削除
-          </button>
+        <div className="flex flex-row items-center justify-between">
+          <div className={s.itemPrice}>{price}</div>
+          <div className="flex flex-row items-center">
+            <div className={s.remove}>
+              <button onClick={handleRemove}>
+                削除
+              </button>
+            </div>
+            <div>
+              <select
+                disabled={loading}
+                value={quantity}
+                aria-label="数量"
+                onChange={(e) => handleQuantityChange(e.currentTarget.value)}
+                className={s.quantityField}
+              >
+                <option>
+                  1
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
-      </td>
-      <td className={s.priceColumn}>{price}</td>
-      <td>
-        <NumericInput
-          disabled={loading}
-          value={quantity}
-          aria-label="Quantity"
-          onIncrement={doIncrement}
-          onDecrement={doDecrement}
-          onChange={(e) => handleQuantityChange(e.currentTarget.value)}
-        />
-      </td>
-      <td className={s.totals}>{subtotal}</td>
-    </tr>
+      </div>
+    </div>
   );
 }

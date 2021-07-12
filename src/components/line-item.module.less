@@ -1,0 +1,39 @@
+.itemRow {
+  @apply w-full mb-2;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+}
+
+.itemImage {
+  @apply mr-2;
+  width: 80px;
+}
+
+.title {
+  @apply text-xl font-semibold pb-2;
+}
+
+.variant {
+  font-size: var(--text-md);
+  text-transform: capitalize;
+  padding-bottom: var(--space-sm);
+}
+
+.quantityField {
+  height: 30px;
+  width: 50px;
+  border: 1px solid #ccc;
+}
+
+.remove {
+  @apply mr-2 text-gray-500;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  border-bottom: 1px dotted #ccc;
+}
+
+.itemPrice {
+  @apply font-semibold;
+}

@@ -10,6 +10,11 @@ import InstagramPost from '../components/instagram/instagram-post';
 import { Hero } from '../components/hero';
 import * as s from './index.module.less';
 
+const unified = require('unified');
+const markdown = require('remark-parse');
+const html = require('remark-html');
+const breaks = require('remark-breaks');
+
 export const query = graphql`
   query {
     shopifyCollection(handle: { eq: "frontpage" }) {
@@ -35,6 +40,7 @@ export const query = graphql`
       shopInformationNode {
         childMarkdownRemark {
           html
+          excerpt
         }
       }
     }
@@ -59,6 +65,14 @@ export default function IndexPage({ data }) {
   const instaPosts = data.allInstaNode.nodes.map((node) => (
     <InstagramPost key={node.id} node={node} />
   ));
+
+  console.log(unified()
+    .use(markdown)
+    .use(breaks)
+    .use(html)
+    .processSync(
+      data.datoCmsTopPage.shopInformationNode.childMarkdownRemark.excerpt,
+    ).contents);
 
   return (
     <Layout>
@@ -153,7 +167,13 @@ export default function IndexPage({ data }) {
               </h2>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.datoCmsTopPage.shopInformationNode.childMarkdownRemark.html,
+                  __html: unified()
+                    .use(markdown)
+                    .use(breaks)
+                    .use(html)
+                    .processSync(
+                      data.datoCmsTopPage.shopInformationNode.childMarkdownRemark.excerpt,
+                    ).contents,
                 }}
               />
 

@@ -1,0 +1,9 @@
+{
+  "name": "gatsby-remark-line-breaks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "remark-breaks": "^2.0.2"
+  }
+}

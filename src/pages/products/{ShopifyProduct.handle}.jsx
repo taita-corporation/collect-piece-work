@@ -2,14 +2,14 @@ import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import isEqual from 'lodash.isequal';
 import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
+import cn from 'classnames';
 import Layout from '../../components/layout';
 import { StoreContext } from '../../context/store-context';
 import AddToCart from '../../components/add-to-cart';
 import ProductSlider from '../../components/product-slider';
-import { NumericInput } from '../../components/numeric-input';
 import { formatPrice } from '../../utils/format-price';
 import Seo from '../../components/seo';
-import * as s from './product-page.module.css';
+import * as s from './product-page.module.less';
 
 export default function Product({ data: { product, suggestions } }) {
   console.log(product);
@@ -29,6 +29,8 @@ export default function Product({ data: { product, suggestions } }) {
   const [quantity, setQuantity] = React.useState(1);
 
   const productVariant = client.product.helpers.variantForOptions(product, variant) || variant;
+
+  console.log(productVariant);
 
   const [available, setAvailable] = React.useState(
     productVariant.availableForSale,
@@ -114,6 +116,7 @@ export default function Product({ data: { product, suggestions } }) {
                             : `Product Image of ${title} #${index + 1}`
                         }
                           image={image.gatsbyImageData}
+                          className={s.productImage}
                         />
                       </li>
                     ))}
@@ -131,11 +134,10 @@ export default function Product({ data: { product, suggestions } }) {
               <ChevronIcon size={12} />
           </div> */}
             <h1 className={s.header}>{title}</h1>
-            <p className={s.productDescription}>{description}</p>
             <h2 className={s.priceValue}>
               <span>{price}</span>
             </h2>
-            <fieldset className={s.optionsWrapper}>
+            <fieldset className={cn(s.optionsWrapper, { [s.hidden]: !hasVariants })}>
               {hasVariants
                 && options.map(({ id, name, values }, index) => (
                   <div className={s.selectVariant} key={id}>
@@ -153,29 +155,32 @@ export default function Product({ data: { product, suggestions } }) {
                   </div>
                 ))}
             </fieldset>
-            <div className={s.addToCartStyle}>
-              <NumericInput
-                aria-label="Quantity"
-                onIncrement={() => setQuantity((q) => Math.min(q + 1, 1))}
-                onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
-                onChange={(event) => setQuantity(event.currentTarget.value)}
+            <div className={s.quantityFieldWrapper}>
+              <label className="mr-2">
+                数量
+              </label>
+              <select
+                aria-label="数量"
                 value={quantity}
-                min="1"
-                max="1"
-              />
+                onChange={(event) => setQuantity(event.currentTarget.value)}
+                className={s.quantityField}
+              >
+                <option>
+                  1
+                </option>
+                <option>
+                  2
+                </option>
+              </select>
+            </div>
+            <div className={s.addToCartStyle}>
               <AddToCart
                 variantId={productVariant.storefrontId}
                 quantity={quantity}
                 available={available}
               />
             </div>
-            <div className={s.metaSection}>
-              <span className={s.labelFont}>Type</span>
-              <span className={s.tagList}>
-                <Link to={product.productTypeSlug}>{product.productType}</Link>
-              </span>
-              <span className={s.labelFont}>Tags</span>
-            </div>
+            <p className={s.productDescription}>{description}</p>
           </div>
         </div>
       </div>

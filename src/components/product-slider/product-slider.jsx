@@ -4,7 +4,6 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { useKeenSlider } from 'keen-slider/react';
 import cn from 'classnames';
 import * as s from './product-slider.module.css';
@@ -26,8 +25,8 @@ const ProductSlider = ({ children, className = '' }) => {
         const $el = document.getElementById(
           `thumb-${s.details().relativeSlide}`,
         );
-        if (slideNumber >= 3) {
-          thumbsContainerRef.current.scrollLeft = $el.offsetLeft;
+        if (slideNumber >= 2) {
+          thumbsContainerRef.current.scrollLeft = $el.offsetLeft - $el.clientWidth;
         } else {
           thumbsContainerRef.current.scrollLeft = 0;
         }

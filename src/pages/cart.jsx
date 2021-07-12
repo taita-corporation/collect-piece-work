@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 import { StoreContext } from '../context/store-context';
 import { LineItem } from '../components/line-item';
 import { formatPrice } from '../utils/format-price';
-import * as s from './cart.module.css';
+import * as s from './cart.module.less';
 
 export default function CartPage() {
   const { checkout, loading } = React.useContext(StoreContext);
@@ -30,27 +30,15 @@ export default function CartPage() {
           </div>
         ) : (
           <>
-            <h1 className={s.title}>Your cart</h1>
+            <h1 className={s.title}>バッグ</h1>
+            {checkout.lineItems.map((item) => (
+              <LineItem item={item} key={item.id} />
+            ))}
+            <hr />
             <table className={s.table}>
-              <thead>
+              <tbody className={s.tbody}>
                 <tr>
-                  <th className={s.imageHeader}>Image</th>
-                  <th className={s.productHeader}>Product</th>
-                  <th className={s.collapseColumn}>Price</th>
-                  <th>Qty.</th>
-                  <th className={[s.totals, s.collapseColumn].join(' ')}>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {checkout.lineItems.map((item) => (
-                  <LineItem item={item} key={item.id} />
-                ))}
-
-                <tr className={s.summary}>
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.labelColumn}>Subtotal</td>
+                  <td className={s.labelColumn}>合計：</td>
                   <td className={s.totals}>
                     {formatPrice(
                       checkout.subtotalPriceV2.currencyCode,
@@ -58,36 +46,9 @@ export default function CartPage() {
                     )}
                   </td>
                 </tr>
-                <tr className={s.summary}>
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.labelColumn}>Taxes</td>
-                  <td className={s.totals}>
-                    {formatPrice(
-                      checkout.totalTaxV2.currencyCode,
-                      checkout.totalTaxV2.amount,
-                    )}
-                  </td>
-                </tr>
-                <tr className={s.summary}>
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.labelColumn}>Shipping</td>
-                  <td className={s.totals}>Calculated at checkout</td>
-                </tr>
-                <tr className={s.grandTotal}>
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.collapseColumn} />
-                  <td className={s.labelColumn}>Total Price</td>
-                  <td className={s.totals}>
-                    {formatPrice(
-                      checkout.totalPriceV2.currencyCode,
-                      checkout.totalPriceV2.amount,
-                    )}
-                  </td>
+                <tr>
+                  <td className={s.labelColumn}>送料：</td>
+                  <td>配送先によって異なります</td>
                 </tr>
               </tbody>
             </table>
@@ -97,7 +58,7 @@ export default function CartPage() {
               className={s.checkoutButton}
               type="submit"
             >
-              Checkout
+              お支払い手続きに進む
             </button>
           </>
         )}
