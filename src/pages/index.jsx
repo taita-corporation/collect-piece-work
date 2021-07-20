@@ -66,14 +66,6 @@ export default function IndexPage({ data }) {
     <InstagramPost key={node.id} node={node} />
   ));
 
-  console.log(unified()
-    .use(markdown)
-    .use(breaks)
-    .use(html)
-    .processSync(
-      data.datoCmsTopPage.shopInformationNode.childMarkdownRemark.excerpt,
-    ).contents);
-
   return (
     <Layout>
       <div className="container">

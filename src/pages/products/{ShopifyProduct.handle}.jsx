@@ -12,7 +12,6 @@ import Seo from '../../components/seo';
 import * as s from './product-page.module.less';
 
 export default function Product({ data: { product, suggestions } }) {
-  console.log(product);
   const {
     options,
     variants,
@@ -30,8 +29,6 @@ export default function Product({ data: { product, suggestions } }) {
   const [quantity, setQuantity] = React.useState(1);
 
   const productVariant = client.product.helpers.variantForOptions(product, variant) || variant;
-
-  console.log(productVariant);
 
   const [available, setAvailable] = React.useState(
     productVariant.availableForSale,
