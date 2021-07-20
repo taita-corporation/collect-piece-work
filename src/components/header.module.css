@@ -1,11 +1,10 @@
 .header {
   @apply container top-0 sticky flex flex-row justify-between items-center w-full;
   z-index: 99;
-  color: #fff;
-  mix-blend-mode: difference;
 }
 
 .logo {
   font-family: "凸版文久見出し明朝";
   @apply font-bold text-xl;
+  color: #000;
 }
